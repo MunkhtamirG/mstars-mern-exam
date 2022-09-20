@@ -17,14 +17,14 @@ function EditBook() {
     });
 
   const { data, error } = useSWR(
-    `http://localhost:4000/v1/books/${id}`,
+    `https://ozy.ilearn.mn/v1/books/${id}`,
     fetcher
   );
 
   function submitHandler(e) {
     e.preventDefault();
     axios
-      .put(`http://localhost:4000/v1/books/?id=${id}`, {
+      .put(`https://ozy.ilearn.mn/v1/books/?id=${id}`, {
         book_name: e.target.book_name.value,
         price: e.target.price.value,
         author: e.target.author.value,

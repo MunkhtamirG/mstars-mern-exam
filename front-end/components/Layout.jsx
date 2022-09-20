@@ -8,11 +8,10 @@ export default function Layout({ children }) {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
+        justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <Navbar />
       <main>{children}</main>
       <div></div>
     </div>

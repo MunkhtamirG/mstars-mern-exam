@@ -26,10 +26,10 @@ const style = {
 };
 
 export default function AddBookModal({ openAddBook, handleCloseAddBook }) {
-  const [date, setDate] = useState();
+  const [date, setDate] = useState(Date.now());
   function submitHandler(e) {
     axios
-      .post(`http://localhost:4000/v1/books/`, {
+      .post(`https://ozy.ilearn.mn/v1/books/`, {
         book_name: e.target.book_name.value,
         price: e.target.price.value,
         author: e.target.author.value,
@@ -55,21 +55,16 @@ export default function AddBookModal({ openAddBook, handleCloseAddBook }) {
           <TextField label="Book Name" name="book_name" required></TextField>
           <TextField label="Price" name="price" required></TextField>
           <TextField label="Author" name="author" required></TextField>
-          <TextField
-            label="Phone Number"
-            name="phone"
-            required
-            type="number"
-          ></TextField>
-          <TextField label="Address" name="address" required></TextField>
+          <TextField label="ISBN" name="ISBN" required></TextField>
+          <DatePicker
+            selected={date}
+            onChange={(date) => {
+              setDate(date);
+            }}
+            showTimeSelect
+            dateFormat="Pp"
+          />
 
-          <TextField label="Status" name="user_status" required></TextField>
-          <TextField
-            label="Password"
-            name="password"
-            required
-            type="password"
-          ></TextField>
           <Button type="submit" variant="contained">
             Save
           </Button>

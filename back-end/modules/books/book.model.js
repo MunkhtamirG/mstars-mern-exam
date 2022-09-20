@@ -20,6 +20,10 @@ const bookSchema = new mongoose.Schema({
   price: {
     type: Number,
   },
+  publisher: {
+    type: String,
+    default: "Publisher",
+  },
 });
 
 const Books = mongoose.model("Books", bookSchema);
