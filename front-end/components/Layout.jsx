@@ -8,6 +8,7 @@ export default function Layout({ children }) {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        minHeight: "100vh",
       }}
     >
       <Container>
