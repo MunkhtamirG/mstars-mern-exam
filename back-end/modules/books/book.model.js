@@ -13,6 +13,10 @@ const bookSchema = new mongoose.Schema({
   author: {
     type: String,
   },
+  code: {
+    type: String,
+    default: "NVL001",
+  },
   publish_date: {
     type: Date,
     default: Date.now(),

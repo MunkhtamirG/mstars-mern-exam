@@ -29,6 +29,7 @@ function EditBook() {
         price: e.target.price.value,
         author: e.target.author.value,
         ISBN: e.target.ISBN.value,
+        publisher: e.target.publisher.value,
         publish_date: date,
       })
       .then((res) => {
@@ -82,6 +83,11 @@ function EditBook() {
               label="ISBN"
               defaultValue={data.ISBN}
               name="ISBN"
+            ></TextField>
+            <TextField
+              label="Publisher"
+              defaultValue={data.publisher}
+              name="publisher"
             ></TextField>
             <DatePicker
               selected={date}

@@ -71,7 +71,7 @@ export default function Users() {
                 <TableCell>${book.price}</TableCell>
                 <TableCell>{book.author}</TableCell>
                 <TableCell>{book.ISBN}</TableCell>
-                <TableCell>{book.ISBN}</TableCell>
+                <TableCell>{book.publisher}</TableCell>
                 <TableCell>
                   {moment(book.publish_date).format("YYYY-MM-DD")}
                 </TableCell>
