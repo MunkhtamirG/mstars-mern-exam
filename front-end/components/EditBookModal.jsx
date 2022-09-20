@@ -29,14 +29,19 @@ const style = {
   gap: 3,
 };
 
-export default function AddBookModal({ openAddBook, handleCloseAddBook }) {
-  const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
+export default function EditBookModal({
+  openEditBook,
+  handleCloseEditBook,
+  book,
+}) {
+  const [value, setValue] = React.useState(dayjs("2022-09-20T21:11:54"));
   const handleChange = (newValue) => {
     setValue(newValue);
   };
   function submitHandler(e) {
+    e.preventDefault();
     axios
-      .post(`https://ozy.ilearn.mn/v1/books/`, {
+      .put(`https://ozy.ilearn.mn/v1/books/?id=${book?._id}`, {
         book_name: e.target.book_name.value,
         code: e.target.code.value,
         price: e.target.price.value,
@@ -47,13 +52,17 @@ export default function AddBookModal({ openAddBook, handleCloseAddBook }) {
       })
       .then((res) => {
         console.log(res);
+        if (res.status === 200) {
+          handleCloseEditBook(true);
+          location.reload();
+        }
       });
   }
   return (
     <div>
       <Modal
-        open={openAddBook}
-        onClose={handleCloseAddBook}
+        open={openEditBook}
+        onClose={handleCloseEditBook}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         className="add-modal"
@@ -64,14 +73,44 @@ export default function AddBookModal({ openAddBook, handleCloseAddBook }) {
             component="h2"
             style={{ fontSize: "24px", fontWeight: 700, textAlign: "center" }}
           >
-            Add Book
+            Edit Book
           </Typography>
-          <TextField label="Name" name="book_name" required></TextField>
-          <TextField label="Code" name="code" required></TextField>
-          <TextField label="Price" name="price" required></TextField>
-          <TextField label="Author" name="author" required></TextField>
-          <TextField label="ISBN" name="ISBN" required></TextField>
-          <TextField label="Publisher" name="publisher" required></TextField>
+          <TextField
+            label="Name"
+            name="book_name"
+            required
+            defaultValue={book?.book_name}
+          ></TextField>
+          <TextField
+            label="Code"
+            name="code"
+            required
+            defaultValue={book?.code}
+          ></TextField>
+          <TextField
+            label="Price"
+            name="price"
+            required
+            defaultValue={book?.price}
+          ></TextField>
+          <TextField
+            label="Author"
+            name="author"
+            required
+            defaultValue={book?.author}
+          ></TextField>
+          <TextField
+            label="ISBN"
+            name="ISBN"
+            required
+            defaultValue={book?.ISBN}
+          ></TextField>
+          <TextField
+            label="Publisher"
+            name="publisher"
+            required
+            defaultValue={book?.publisher}
+          ></TextField>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Stack>
               <DateTimePicker
